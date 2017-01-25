@@ -2,6 +2,11 @@ import {DateTime} from './datetime';
 import {VgLegendEncode} from './vega.schema';
 
 export interface LegendConfig {
+  // ---------- General ----------
+  /**
+   * Optional mark definitions for custom legend encoding.
+   */
+  encode?: VgLegendEncode;
   /**
    * The orientation of the legend. One of "left" or "right". This determines how the legend is positioned within the scene. The default is "right".
    */
@@ -18,6 +23,15 @@ export interface LegendConfig {
    * The margin around the legend, in pixels
    */
   margin?: number;
+  /**
+   * A non-positive integer indicating z-index of the legend.
+   * If zindex is 0, legend should be drawn behind all chart elements.
+   * To put them in front, use zindex = 1.
+   * @TJS-type integer
+   * @minimum 0
+   */
+  zindex?: number;
+  // ---------- Gradient ----------
   /**
    * The color of the gradient stroke, can be in hex color code or regular color name.
    */
@@ -37,6 +51,7 @@ export interface LegendConfig {
    * @mimimum 0
    */
   gradientWidth?: number;
+  // ---------- Label ----------
   /**
    * The alignment of the legend label, can be left, middle or right.
    */
@@ -67,6 +82,7 @@ export interface LegendConfig {
    * Whether month names and weekday names should be abbreviated.
    */
   shortTimeLabels?: boolean;
+  // ---------- Symbols ----------
   /**
    * The color of the legend symbol,
    */
@@ -86,6 +102,7 @@ export interface LegendConfig {
    * @minimum 0
    */
   symbolStrokeWidth?: number;
+  // ---------- Title ----------
   /**
    * Optional mark property definitions for custom legend styling.
    */
@@ -106,9 +123,18 @@ export interface LegendConfig {
    */
   titleFontWeight?: string | number;
   /**
-   * Optional mark definitions for custom legend encoding.
+   * The padding, in pixels, between title and legend.
    */
-  encode?: VgLegendEncode;
+  titlePadding?: number;
+  // ---------- Other ----------
+  /**
+   * Padding (in pixels) between legend entries in a symbol legend.
+   */
+  entryPadding?: number;
+  /**
+   * The number of ticks for legend.
+   */
+  tickCount?: number;
 }
 
 /**

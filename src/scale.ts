@@ -260,6 +260,11 @@ export interface Scale {
    */
   zero?: boolean;
 
+  /**
+   * The color space for scale/
+   */
+  interpolate?: 'rgb'| 'lab' | 'hcl' | 'hsl' | 'hsl-long' | 'hcl-long';
+
   // Vega-Lite only
   /**
    * Uses the source data range as scale domain instead of aggregated data for aggregate axis.
@@ -270,8 +275,7 @@ export interface Scale {
 
 export const SCALE_PROPERTIES = [
   'type', 'domain', 'range', 'round', 'rangeStep', 'scheme', 'padding', 'clamp', 'nice',
-  'exponent', 'zero',
-  // TODO: add interpolate here
+  'exponent', 'zero', 'interpolate',
   // FIXME: determine if 'useRawDomain' should really be included here
   'useRawDomain'
 ];
@@ -287,6 +291,7 @@ export function scaleTypeSupportProperty(scaleType: ScaleType, propName: string)
       return isContinuousToContinuous(scaleType) || scaleType === 'band' || scaleType === 'point';
     case 'rangeStep':
     case 'padding':
+    case 'interpolate':
     case 'paddingOuter':
       return contains(['point', 'band'], scaleType);
     case 'paddingInner':

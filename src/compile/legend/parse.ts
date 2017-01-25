@@ -65,7 +65,7 @@ export function parseLegend(model: UnitModel, channel: Channel): VgLegend {
   }
 
   // 1.2 Add properties without rules
-  ['offset', 'orient'].forEach(function(property) {
+  ['offset', 'orient','titlePadding', 'entryPadding', 'zindex', 'encode'].forEach(function(property) {
     const value = legend[property];
     if (value !== undefined) {
       def[property] = value;

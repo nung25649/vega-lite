@@ -95,9 +95,17 @@ export interface AxisConfig {
    */
   labelMaxLength?: number;
   /**
+   * The padding, in pixels, between axis and text labels.
+   */
+  labelPadding?: number;
+  /**
    * Whether month and day names should be abbreviated.
    */
   shortTimeLabels?: boolean;
+  /**
+   * The position of label compared to the position of the axes, in pixels.
+   */
+  position?: number;
 
   // ---------- Ticks ----------
   /**
@@ -203,12 +211,23 @@ export interface AxisConfig {
    * @TJS-type integer
    */
   titleMaxLength?: number;
-
+  /**
+   * The padding, in pixels, between title and axis.
+   */
+  titlePadding?: number;
   // ---------- Other ----------
   /**
    * Optional mark definitions for custom axis encoding.
    */
   encode?: VgAxisEncode;
+  /**
+   * The minimum extent (in pixels) that axis ticks and labels should use. This determines a minimum offset value for axis titles.
+   */
+  minExtent?: number;
+  /**
+   * The maximum extent (in pixels) that axist ticks and labels should use. This determines a maximum offset value for axis titles.
+   */
+  maxExtent?: number;
 }
 
 // TODO: add comment for properties that we rely on Vega's default to produce
