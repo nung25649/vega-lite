@@ -8,12 +8,13 @@ import {StackProperties} from '../stack';
 import {FILL_STROKE_CONFIG} from '../mark';
 import {keys, duplicate, mergeDeep, flatten, unique, isArray, vals, hash} from '../util';
 import {VgData, isDataRefUnionedDomain, isFieldRefUnionDomain, isDataRefDomain, VgDataRef, VgEncodeEntry, DataRefUnionDomain, FieldRefUnionDomain} from '../vega.schema';
+import {isUrlData} from '../data';
 
 import {assembleData, parseLayerData} from './data/data';
+import {applyConfig, buildModel} from './common';
 import {assembleLayout, parseLayerLayout} from './layout';
 import {Model} from './model';
 import {UnitModel} from './unit';
-import {applyConfig, buildModel} from './common';
 
 import {ScaleComponents} from './scale/scale';
 
@@ -52,14 +53,14 @@ export class LayerModel extends Model {
    * If undefined (e.g., for ordinal scale), the width of the
    * visualization will be calculated dynamically.
    */
-  private _width: number;
+  private readonly _width: number;
 
   /**
    * Fixed height for the unit visualization.
    * If undefined (e.g., for ordinal scale), the height of the
    * visualization will be calculated dynamically.
    */
-  private _height: number;
+  private readonly _height: number;
 
 
   constructor(spec: LayerSpec, parent: Model, parentGivenName: string) {
@@ -87,7 +88,7 @@ export class LayerModel extends Model {
     return this._height;
   }
 
-  public channelHasField(channel: Channel): boolean {
+  public channelHasField(_: Channel): boolean {
     // layer does not have any channels
     return false;
   }
@@ -106,7 +107,7 @@ export class LayerModel extends Model {
     return this._children[0].dataTable();
   }
 
-  public fieldDef(channel: Channel): FieldDef {
+  public fieldDef(_: Channel): FieldDef {
     return null; // layer does not have field defs
   }
 
@@ -128,7 +129,7 @@ export class LayerModel extends Model {
 
   public parseLayoutData() {
     // TODO: correctly union ordinal scales rather than just using the layout of the first child
-    this._children.forEach((child, i) => {
+    this._children.forEach(child => {
       child.parseLayoutData();
     });
     this.component.layout = parseLayerLayout(this);
@@ -314,7 +315,7 @@ export class LayerModel extends Model {
   public compatibleSource(child: UnitModel) {
     const data = this.data();
     const childData = child.component.data;
-    const compatible = !childData.source || (data && data.url === childData.source.url);
+    const compatible = !childData.source || (data && isUrlData(data) && data.url === childData.source.url);
     return compatible;
   }
 }

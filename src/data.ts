@@ -1,7 +1,6 @@
 /*
  * Constants and utilities for data.
  */
-import {Type} from './type';
 
 export interface DataFormat {
   /**
@@ -48,7 +47,9 @@ export namespace DataFormatType {
 
 export type DataFormatType = typeof DataFormatType.JSON | typeof DataFormatType.CSV | typeof DataFormatType.TSV | typeof DataFormatType.TOPOJSON;
 
-export interface Data {
+export type Data = UrlData | InlineData;
+
+export interface UrlData {
   /**
    * An object that specifies the format for the data file or values.
    */
@@ -58,11 +59,22 @@ export interface Data {
    * A URL from which to load the data set. Use the format.type property
    * to ensure the loaded data is correctly parsed.
    */
-  url?: string;
+  url: string;
+}
+
+export interface InlineData {
   /**
    * Pass array of objects instead of a url to a file.
    */
-  values?: any[];
+  values: any[];
+}
+
+export function isUrlData(data: Data): data is UrlData {
+  return !!data['url'];
+}
+
+export function isInlineData(data: Data): data is InlineData {
+  return !!data['values'];
 }
 
 export type DataSourceType = 'source' | 'summary' | 'stacked' | 'layout';
@@ -72,12 +84,3 @@ export const SOURCE: 'source' = 'source';
 export const STACKED: 'stacked' = 'stacked';
 export const LAYOUT: 'layout' = 'layout';
 
-/** Mapping from datalib's inferred type to Vega-lite's type */
-// TODO: consider if we can remove
-export const types = {
-  'boolean': Type.NOMINAL,
-  'number': Type.QUANTITATIVE,
-  'integer': Type.QUANTITATIVE,
-  'date': Type.TEMPORAL,
-  'string': Type.NOMINAL
-};
