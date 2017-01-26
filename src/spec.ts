@@ -131,6 +131,10 @@ export interface ExtendedFacetSpec extends BaseSpec {
   spec: ExtendedUnitSpec | FacetSpec;
 }
 
+export interface TextChannelDef extends FieldDef {
+  format: string;
+}
+
 export type ExtendedSpec = ExtendedUnitSpec | FacetSpec | LayerSpec;
 export type Spec = UnitSpec | FacetSpec | LayerSpec;
 

@@ -17,10 +17,7 @@ export interface TextCompiler extends MarkCompiler {
 }
 
 export const text: TextCompiler = {
-  markType: () => {
-    return 'text';
-  },
-
+  markType: () => 'text',
   background: (model: UnitModel) => {
     return {
       x: { value: 0 },
