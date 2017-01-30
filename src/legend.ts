@@ -8,6 +8,10 @@ export interface LegendConfig {
    */
   encode?: VgLegendEncode;
   /**
+   * Padding (in pixels) between legend entries in a symbol legend.
+   */
+  entryPadding?: number;
+  /**
    * The orientation of the legend. One of "left" or "right". This determines how the legend is positioned within the scene. The default is "right".
    */
   orient?: string;
@@ -23,6 +27,10 @@ export interface LegendConfig {
    * The margin around the legend, in pixels
    */
   margin?: number;
+  /**
+   * The number of ticks for legend.
+   */
+  tickCount?: number;
   /**
    * A non-positive integer indicating z-index of the legend.
    * If zindex is 0, legend should be drawn behind all chart elements.
@@ -125,16 +133,7 @@ export interface LegendConfig {
   /**
    * The padding, in pixels, between title and legend.
    */
-  titlePadding?: number;
-  // ---------- Other ----------
-  /**
-   * Padding (in pixels) between legend entries in a symbol legend.
-   */
-  entryPadding?: number;
-  /**
-   * The number of ticks for legend.
-   */
-  tickCount?: number;
+  titlePadding?: number;  
 }
 
 /**

@@ -59,7 +59,7 @@ export function parseLegend(model: UnitModel, channel: Channel): VgLegend {
   }
 
   // 1.2 Add properties without rules
-  ['offset', 'orient','titlePadding', 'entryPadding', 'zindex', 'encode'].forEach(function(property) {
+  ['maxExtent', 'offset', 'orient','titlePadding', 'zindex'].forEach(function(property) {
     const value = legend[property];
     if (value !== undefined) {
       def[property] = value;
@@ -68,7 +68,7 @@ export function parseLegend(model: UnitModel, channel: Channel): VgLegend {
 
   // 2) Add mark property definition groups
   const encodeSpec = legend.encode || {};
-  ['title', 'symbols', 'legend', 'labels'].forEach(function(part) {
+  ['labels', 'legend', 'title', 'symbols'].forEach(function(part) {
     let value = encode[part] ?
       encode[part](fieldDef, encodeSpec[part], model, channel) : // apply rule
       encodeSpec[part]; // no rule -- just default values

@@ -293,7 +293,6 @@ export function scaleTypeSupportProperty(scaleType: ScaleType, propName: string)
       return isContinuousToContinuous(scaleType) || scaleType === 'band' || scaleType === 'point';
     case 'rangeStep':
     case 'padding':
-    case 'interpolate':
     case 'paddingOuter':
       return contains(['point', 'band'], scaleType);
     case 'paddingInner':
@@ -360,6 +359,7 @@ export function channelScalePropertyIncompatability(channel: Channel, propName: 
     case 'exponent':
     case 'nice':
     case 'zero':
+    case 'interpolate':
     case 'useRawDomain':
       // These channel do not have strict requirement
       return undefined; // GOOD!

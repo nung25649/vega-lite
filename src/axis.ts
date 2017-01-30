@@ -225,7 +225,7 @@ export interface AxisConfig {
    */
   minExtent?: number;
   /**
-   * The maximum extent (in pixels) that axist ticks and labels should use. This determines a maximum offset value for axis titles.
+   * The maximum extent (in pixels) that axis ticks and labels should use. This determines a maximum offset value for axis titles.
    */
   maxExtent?: number;
 }
