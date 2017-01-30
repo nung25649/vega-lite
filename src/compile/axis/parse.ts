@@ -90,9 +90,8 @@ function parseAxis(channel: Channel, model: Model, isGridAxis: boolean): VgAxis 
     // a) properties with special rules (so it has axis[property] methods) -- call rule functions
     'domain', 'format', 'label', 'grid', 'gridScale', 'orient', 'tick', 'tickSize', 'tickCount',  'title', 'values', 'zindex',
     // b) properties without rules, only produce default values in the schema, or explicit value if specified
-     'labelPadding', 'maxExtent', 'minExtent', 'offset', 'position', 'subdivide', 'tickPadding', 'tickSize', 'tickSizeEnd', 
-     'tickSizeMajor', 'tickSizeMinor', 'titleOffset', 'titlePadding',
-     
+     'labelPadding', 'maxExtent', 'minExtent', 'offset', 'position', 'subdivide', 'tickPadding', 'tickSize', 'tickSizeEnd',
+     'tickSizeMajor', 'tickSizeMinor', 'titleOffset', 'titlePadding'
   ].forEach(function(property) {
     const value = getSpecifiedOrDefaultValue(property, axis, channel, model, isGridAxis);
     if (value !== undefined) {

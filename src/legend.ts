@@ -133,7 +133,7 @@ export interface LegendConfig {
   /**
    * The padding, in pixels, between title and legend.
    */
-  titlePadding?: number;  
+  titlePadding?: number;
 }
 
 /**
